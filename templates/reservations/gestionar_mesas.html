@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Gestionar Mesas{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Agregar Mesa</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button type="submit" class="btn btn-primary w-100">Agregar Mesa</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Mesas Actuales</h2>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Mesa #</th>
+                                <th>Capacidad</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for mesa in mesas %}
+                            <tr>
+                                <td>{{ mesa.id_mesa }}</td>
+                                <td>{{ mesa.capacidad }} personas</td>
+                                <td>
+                                    {% if mesa.disponibilidad %}
+                                    <span class="badge bg-success">Disponible</span>
+                                    {% else %}
+                                    <span class="badge bg-danger">Ocupada</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <form method="post" action="{% url 'toggle_mesa_disponibilidad' mesa.id_mesa %}"
+                                        class="d-inline">
+                                        {% csrf_token %}
+                                        <button type="submit"
+                                            class="btn btn-sm {% if mesa.disponibilidad %}btn-danger{% else %}btn-success{% endif %}">
+                                            {% if mesa.disponibilidad %}Marcar Ocupada{% else %}Marcar Disponible{%
+                                            endif %}
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

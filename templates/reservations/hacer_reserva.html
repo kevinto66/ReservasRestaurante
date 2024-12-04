@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Hacer Reserva{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title text-center mb-4">Hacer Reserva</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-4">
+                        <h4>Información de la Reserva</h4>
+                        {{ reserva_form|crispy }}
+                    </div>
+
+                    <div class="mb-4">
+                        <h4>Selección de Platos</h4>
+                        {{ pedido_formset.management_form }}
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Plato</th>
+                                        <th>Precio</th>
+                                        <th>Cantidad</th>
+                                        <th>Subtotal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for form in pedido_formset %}
+                                    <tr class="plato-row" data-plato-id="{{ form.instance.plato.id_plato }}">
+                                        <td>
+                                            {{ form.plato }}
+                                            {{ form.id }}
+                                        </td>
+                                        <td class="precio-plato" data-precio="{{ form.instance.plato.precio }}">
+                                            ${{ form.instance.plato.precio }}
+                                        </td>
+                                        <td>
+                                            <input type="number" name="{{ form.cantidad.html_name }}" value="0" min="0"
+                                                class="form-control cantidad-input" id="{{ form.cantidad.auto_id }}">
+                                        </td>
+                                        <td class="subtotal">$0.00</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="3" class="text-end"><strong>Total:</strong></td>
+                                        <td id="total-pedido">$0.00</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Confirmar Reserva</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const cantidadInputs = document.querySelectorAll('.cantidad-input');
+        const rows = document.querySelectorAll('.plato-row');
+
+        function actualizarTotales() {
+            let totalPedido = 0;
+
+            rows.forEach(row => {
+                const cantidad = parseInt(row.querySelector('.cantidad-input').value) || 0;
+                const precioElement = row.querySelector('.precio-plato');
+                const precio = parseFloat(precioElement.dataset.precio) || 0;
+                const subtotal = cantidad * precio;
+
+                row.querySelector('.subtotal').textContent = `$${subtotal.toFixed(2)}`;
+                totalPedido += subtotal;
+            });
+
+            document.getElementById('total-pedido').textContent = `$${totalPedido.toFixed(2)}`;
+        }
+
+        // Actualizar precios iniciales
+        rows.forEach(row => {
+            const platoSelect = row.querySelector('select');
+            const precioElement = row.querySelector('.precio-plato');
+
+            if (platoSelect) {
+                platoSelect.addEventListener('change', function () {
+                    const selectedOption = this.options[this.selectedIndex];
+                    const precio = selectedOption.dataset.precio || '0';
+                    precioElement.dataset.precio = precio;
+                    precioElement.textContent = `$${precio}`;
+                    actualizarTotales();
+                });
+
+                // Establecer precio inicial
+                const selectedOption = platoSelect.options[platoSelect.selectedIndex];
+                if (selectedOption) {
+                    const precio = selectedOption.dataset.precio || '0';
+                    precioElement.dataset.precio = precio;
+                    precioElement.textContent = `$${precio}`;
+                }
+            }
+        });
+
+        cantidadInputs.forEach(input => {
+            input.addEventListener('change', actualizarTotales);
+            input.addEventListener('keyup', actualizarTotales);
+        });
+
+        // Inicializar totales
+        actualizarTotales();
+    });
+</script>
+{% endblock %}

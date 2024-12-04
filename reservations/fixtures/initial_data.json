@@ -1,0 +1,262 @@
+[
+    {
+        "model": "reservations.menu",
+        "pk": 1,
+        "fields": {
+            "nombre_plato": "Pizza Margherita",
+            "descripcion": "Salsa de tomate, mozzarella fresca y albahaca",
+            "precio": "12.99",
+            "disponibilidad": true
+        }
+    },
+    {
+        "model": "reservations.menu",
+        "pk": 2,
+        "fields": {
+            "nombre_plato": "Pizza Pepperoni",
+            "descripcion": "Salsa de tomate, mozzarella y pepperoni",
+            "precio": "14.99",
+            "disponibilidad": true
+        }
+    },
+    {
+        "model": "reservations.menu",
+        "pk": 3,
+        "fields": {
+            "nombre_plato": "Pizza Cuatro Quesos",
+            "descripcion": "Mozzarella, gorgonzola, parmesano y provolone",
+            "precio": "15.99",
+            "disponibilidad": true
+        }
+    },
+    {
+        "model": "reservations.menu",
+        "pk": 4,
+        "fields": {
+            "nombre_plato": "Pizza Hawaiana",
+            "descripcion": "Salsa de tomate, mozzarella, jamón y piña",
+            "precio": "13.99",
+            "disponibilidad": true
+        }
+    },
+    {
+        "model": "reservations.menu",
+        "pk": 5,
+        "fields": {
+            "nombre_plato": "Pizza Vegetariana",
+            "descripcion": "Salsa de tomate, mozzarella, pimientos, champiñones, cebolla y aceitunas",
+            "precio": "14.99",
+            "disponibilidad": true
+        }
+    },
+    {
+        "model": "reservations.menu",
+        "pk": 6,
+        "fields": {
+            "nombre_plato": "Pizza BBQ Chicken",
+            "descripcion": "Salsa BBQ, pollo, mozzarella, cebolla roja y cilantro",
+            "precio": "16.99",
+            "disponibilidad": true
+        }
+    },
+    {
+        "model": "reservations.menu",
+        "pk": 7,
+        "fields": {
+            "nombre_plato": "Pizza Mexicana",
+            "descripcion": "Salsa de tomate, mozzarella, jalapeños, carne picada, pimientos y guacamole",
+            "precio": "16.99",
+            "disponibilidad": true
+        }
+    },
+    {
+        "model": "reservations.menu",
+        "pk": 8,
+        "fields": {
+            "nombre_plato": "Pizza Carbonara",
+            "descripcion": "Salsa carbonara, mozzarella, bacon, champiñones y huevo",
+            "precio": "15.99",
+            "disponibilidad": true
+        }
+    },
+    {
+        "model": "reservations.menu",
+        "pk": 9,
+        "fields": {
+            "nombre_plato": "Pizza Marinera",
+            "descripcion": "Salsa de tomate, mozzarella, camarones, mejillones y calamares",
+            "precio": "18.99",
+            "disponibilidad": true
+        }
+    },
+    {
+        "model": "reservations.menu",
+        "pk": 10,
+        "fields": {
+            "nombre_plato": "Pizza Suprema",
+            "descripcion": "Salsa de tomate, mozzarella, pepperoni, pimientos, champiñones, cebolla, aceitunas y jamón",
+            "precio": "17.99",
+            "disponibilidad": true
+        }
+    },
+    {
+        "model": "reservations.mesa",
+        "pk": 1,
+        "fields": {
+            "capacidad": 2,
+            "disponibilidad": true
+        }
+    },
+    {
+        "model": "reservations.mesa",
+        "pk": 2,
+        "fields": {
+            "capacidad": 2,
+            "disponibilidad": true
+        }
+    },
+    {
+        "model": "reservations.mesa",
+        "pk": 3,
+        "fields": {
+            "capacidad": 2,
+            "disponibilidad": true
+        }
+    },
+    {
+        "model": "reservations.mesa",
+        "pk": 4,
+        "fields": {
+            "capacidad": 2,
+            "disponibilidad": true
+        }
+    },
+    {
+        "model": "reservations.mesa",
+        "pk": 5,
+        "fields": {
+            "capacidad": 4,
+            "disponibilidad": true
+        }
+    },
+    {
+        "model": "reservations.mesa",
+        "pk": 6,
+        "fields": {
+            "capacidad": 4,
+            "disponibilidad": true
+        }
+    },
+    {
+        "model": "reservations.mesa",
+        "pk": 7,
+        "fields": {
+            "capacidad": 4,
+            "disponibilidad": true
+        }
+    },
+    {
+        "model": "reservations.mesa",
+        "pk": 8,
+        "fields": {
+            "capacidad": 4,
+            "disponibilidad": true
+        }
+    },
+    {
+        "model": "reservations.mesa",
+        "pk": 9,
+        "fields": {
+            "capacidad": 4,
+            "disponibilidad": true
+        }
+    },
+    {
+        "model": "reservations.mesa",
+        "pk": 10,
+        "fields": {
+            "capacidad": 6,
+            "disponibilidad": true
+        }
+    },
+    {
+        "model": "reservations.mesa",
+        "pk": 11,
+        "fields": {
+            "capacidad": 6,
+            "disponibilidad": true
+        }
+    },
+    {
+        "model": "reservations.mesa",
+        "pk": 12,
+        "fields": {
+            "capacidad": 6,
+            "disponibilidad": true
+        }
+    },
+    {
+        "model": "reservations.mesa",
+        "pk": 13,
+        "fields": {
+            "capacidad": 6,
+            "disponibilidad": true
+        }
+    },
+    {
+        "model": "reservations.mesa",
+        "pk": 14,
+        "fields": {
+            "capacidad": 8,
+            "disponibilidad": true
+        }
+    },
+    {
+        "model": "reservations.mesa",
+        "pk": 15,
+        "fields": {
+            "capacidad": 8,
+            "disponibilidad": true
+        }
+    },
+    {
+        "model": "reservations.mesa",
+        "pk": 16,
+        "fields": {
+            "capacidad": 8,
+            "disponibilidad": true
+        }
+    },
+    {
+        "model": "reservations.mesa",
+        "pk": 17,
+        "fields": {
+            "capacidad": 10,
+            "disponibilidad": true
+        }
+    },
+    {
+        "model": "reservations.mesa",
+        "pk": 18,
+        "fields": {
+            "capacidad": 10,
+            "disponibilidad": true
+        }
+    },
+    {
+        "model": "reservations.mesa",
+        "pk": 19,
+        "fields": {
+            "capacidad": 12,
+            "disponibilidad": true
+        }
+    },
+    {
+        "model": "reservations.mesa",
+        "pk": 20,
+        "fields": {
+            "capacidad": 12,
+            "disponibilidad": true
+        }
+    }
+]

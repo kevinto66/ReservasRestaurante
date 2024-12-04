@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h2>Menú del Día</h2>
+        <div class="row">
+            {% for plato in menu %}
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ plato.nombre_plato }}</h5>
+                        <p class="card-text">{{ plato.descripcion }}</p>
+                        <p class="card-text"><strong>Precio: </strong>${{ plato.precio }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <h2>Reservas Activas</h2>
+        {% if reservas %}
+            {% for reserva in reservas %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Mesa {{ reserva.mesa.id_mesa }}</h5>
+                    <p class="card-text">
+                        <strong>Fecha:</strong> {{ reserva.fecha|date:"d/m/Y H:i" }}<br>
+                        <strong>Estado:</strong> 
+                        <span class="badge bg-success">Activa</span>
+                    </p>
+                    {% if reserva.pedidos.all %}
+                        <h6>Pedidos:</h6>
+                        <ul class="list-unstyled">
+                            {% for pedido in reserva.pedidos.all %}
+                            <li>{{ pedido.plato.nombre_plato }} x{{ pedido.cantidad }} - ${{ pedido.precio_total }}</li>
+                            {% endfor %}
+                        </ul>
+                        <p><strong>Total:</strong> ${{ reserva.precio_total }}</p>
+                    {% endif %}
+                    <form method="post" action="{% url 'cancelar_reserva' reserva.id_reserva %}" 
+                          onsubmit="return confirm('¿Estás seguro de que deseas cancelar esta reserva?');">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Cancelar Reserva</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No tienes reservas activas.</p>
+        {% endif %}
+        
+        <a href="{% url 'hacer_reserva' %}" class="btn btn-primary w-100">
+            <i class="fas fa-calendar-plus"></i> Hacer Nueva Reserva
+        </a>
+    </div>
+</div>
+{% endblock %}
